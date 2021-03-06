@@ -76,8 +76,11 @@ function toggleMenu(e) {
       })
     }
     if (section.dataset.id === path) {
+      // console.log('section: ', section);
+      section.querySelector('.section-content').style.height = '100%';
       const sectionCode = section.cloneNode(true);
       sectionCode.style.transform = 'translateY(0)';
+      console.log('sectionCode', section.querySelector('.section-content'));
       sectionCode.querySelectorAll('*').forEach(child => {
         if (child.classList.contains('shape')) {
           child.remove()
@@ -108,6 +111,9 @@ function toggleMenuOff(e) {
 
 function openMenu(e) {
   if (toggleMenuSwitch) {
+    document.querySelectorAll('.section-content').forEach(sectionContent => {
+      sectionContent.style.height = 'calc(var(--vh, 1vh) * 100)';
+    })
     window.addEventListener('keydown', handleKeyPressAnimation)
     document.querySelector('.wrapper-menu').classList.remove('open');
     toggleMenuSwitch = false;
